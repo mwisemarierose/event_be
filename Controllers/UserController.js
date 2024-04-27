@@ -40,7 +40,7 @@ class userController {
                 const isMatch = await bcrypt.compare(req.body.password, user.password)
                 if (isMatch) {
                     const token = await sign({ id: user._id, email: user.email, role: user.role })
-                    user.password = user.password
+                    user.password = null;
                     return res.status(200).json({ message: "user logged in successfully", token, user })
                 }
 
